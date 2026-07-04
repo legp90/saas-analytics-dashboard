@@ -1,75 +1,71 @@
-# React + TypeScript + Vite
+# 📊 Enterprise SaaS Analytics Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance business intelligence and data visualization control panel tailored for modern SaaS applications. This platform delivers a comprehensive view of critical business health indicators by transforming raw operational data into actionable, interactive, and beautifully rendered analytical insights.
 
-Currently, two official plugins are available:
+🌐 **Live Demo:** [View Live Instance](https://saas-analytics-dashboard-gilt.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Interactive Data Visualization:** Implements dynamic, highly responsive data charting using Recharts to visualize complex metrics across customizable timeframes.
+* **Critical KPI Tracking:** Real-time tracking of foundational SaaS metrics, including Monthly Recurring Revenue (MRR), Churn Rate, Lifetime Value (LTV), and Average Revenue Per User (ARPU).
+* **Advanced Data Filtering & Tables:** A robust, state-driven data table component with strict type safety that allows immediate multi-parameter filtering, sorting, and pagination without performance bottlenecks.
+* **Developer-First UX:** A clean, scannable dashboard layout built with a strict Tailwind CSS system, supporting responsive adaptations and intuitive state transitions.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+* **Frontend Library:** React (Functional Architecture & Optimized Hooks)
+* **Type Safety:** TypeScript (Strict Mode for dependable data shapes)
+* **Styling & Icons:** Tailwind CSS & Lucide React
+* **Data Charting Engine:** Recharts (SVG-based responsive charts)
+* **Build Tooling:** Vite
+* **Hosting & Deployment:** Vercel
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🧠 Technical Highlight: Type-Safe Analytical State
 
+The data architecture utilizes strict TypeScript interfaces to guarantee that any raw entry matches our financial schema, avoiding unexpected runtime issues when computing high-impact metrics:
+
+```typescript
+// Example of the strict typing driving our analytics schema
+export interface MetricSnapshot {
+  id: string;
+  timestamp: string;
+  mrr: number;
+  churnRate: number;
+  activeSubscriptions: number;
+  unresolvedTickets: number;
+}
+
+// State management ensures instant filtering across the dataset
+const filteredData = useMemo(() => {
+  return rawSnapshots.filter((item) => {
+    return item.mrr >= minRevenueThreshold && item.churnRate <= maxChurnAllowed;
+  });
+}, [rawSnapshots, minRevenueThreshold, maxChurnAllowed]);
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🔧 Installation and Local Setup
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Follow these steps to run the analytics dashboard locally:
 
-```
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/legp90/saas-analytics-dashboard.git
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
