@@ -1,24 +1,45 @@
 import React from 'react';
-// Cambiamos a 'import type' porque KpiMetric es solo una interfaz de TS
-import type { KpiMetric } from '../../types/analytics';
+import { type LucideIcon, ArrowUpRight, ArrowDownRight } from 'lucide-react';
 
-export const KpiCard: React.FC<KpiMetric> = ({ title, value, change, isPositive, icon: Icon }) => {
+interface KpiCardProps {
+  title: string;
+  value: string;
+  change: string;
+  isPositive: boolean;
+  icon: LucideIcon;
+}
+
+export const KpiCard: React.FC<KpiCardProps> = ({
+  title,
+  value,
+  change,
+  isPositive,
+  icon: Icon,
+}) => {
   return (
-    <div className="p-6 bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200">
-      <div className="flex items-center justify-between">
+    <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-200 outline-none focus:outline-none select-none [webkit-tap-highlight-color:transparent]">
+      <div className="flex items-center justify-between mb-4">
         <span className="text-sm font-medium text-gray-500">{title}</span>
-        <div className="p-2 bg-indigo-50 rounded-lg text-indigo-600">
+        <div className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center text-indigo-600">
           <Icon className="w-5 h-5" />
         </div>
       </div>
-      
-      <div className="mt-4">
+
+      <div className="flex items-baseline justify-between">
         <h3 className="text-2xl font-bold text-gray-900">{value}</h3>
-        <div className="flex items-center mt-2 text-sm">
-          <span className={`font-semibold ${isPositive ? 'text-emerald-600' : 'text-rose-600'}`}>
-            {isPositive ? '+' : ''}{change}
-          </span>
-          <span className="ml-2 text-gray-500">vs. último mes</span>
+        <div
+          className={`flex items-center gap-1 text-xs font-semibold px-2 py-1 rounded-full ${
+            isPositive
+              ? 'bg-emerald-50 text-emerald-600'
+              : 'bg-rose-50 text-rose-600'
+          }`}
+        >
+          {isPositive ? (
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          ) : (
+            <ArrowDownRight className="w-3.5 h-3.5" />
+          )}
+          {change}
         </div>
       </div>
     </div>
